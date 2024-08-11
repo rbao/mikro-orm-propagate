@@ -1,4 +1,4 @@
-import { defineConfig, GeneratedCacheAdapter, Options } from '@mikro-orm/sqlite';
+import { defineConfig, FlushMode, GeneratedCacheAdapter, Options } from '@mikro-orm/sqlite';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 import { existsSync, readFileSync } from 'node:fs';
 
@@ -18,6 +18,7 @@ if (process.env.NODE_ENV === 'production' && existsSync('./temp/metadata.json'))
 }
 
 export default defineConfig({
+  flushMode: FlushMode.COMMIT,
   // for simplicity, we use the SQLite database, as it's available pretty much everywhere
   dbName: 'sqlite.db',
   // folder based discovery setup, using common filename suffix
